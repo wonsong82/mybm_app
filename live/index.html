@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>[뉴져지 초대교회 청년부] 비엠 LIVE</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .navbar {
+            -webkit-justify-content: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .frame-container {
+            position: relative;
+            width: 100%;
+        }
+        .frame-container .placeholder {
+            width: 100%;
+            height: auto;
+            display: block;
+            visibility: hidden;
+        }
+        .frame-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <a href="http://chodaebm.com" class="navbar-brand">
+        <img src="logo.png" height="40">
+    </a>
+</nav>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-8 col-md-9">
+            <div class="video frame-container">
+                <!--<svg xmlns="http://www.w3.org/2000/svg" width="620" height="378"></svg>-->
+                <img class="placeholder" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MjAiIGhlaWdodD0iMzc4Ij48L3N2Zz4=">
+                <iframe src="https://player.twitch.tv/?channel=mybm" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="chat frame-container" >
+                <!--<svg xmlns="http://www.w3.org/2000/svg" width="350" height="500"></svg>-->
+                <img class="placeholder" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNTAiIGhlaWdodD0iNTAwIj48L3N2Zz4=">
+                <iframe src="https://www.twitch.tv/mybm/chat?popout=" frameborder="0" scrolling="no" height="500" width="350"></iframe>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="msg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">알림글</h4>
+            </div>
+            <div class="modal-body">
+                <p>5월 9일, 16일에 있는 창조과학 세미나 라이브 방송은 BM인스타그램에서 방송됩니다.</p>
+                <p>인스타그램 ip4ubm 에서 오후 8시에 시작합니다.</p>
+                <p>감사합니다.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<!--
+
+<footer>
+    <a href="https://www.twitch.tv/mybm?tt_medium=live_embed&tt_content=text_link" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from mybm on www.twitch.tv</a>
+</footer>
+-->
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script>
+    $(function(){
+       $('#msg').modal('show');
+    });
+</script>
+
+
+
+</body>
+</html>
