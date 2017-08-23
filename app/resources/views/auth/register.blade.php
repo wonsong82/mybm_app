@@ -5,16 +5,16 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">순 신청서</div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-3 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-3 control-label">EMail 주소</label>
 
                             <div class="col-md-9">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  autofocus placeholder="Email Address / Login ID">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  autofocus placeholder="Email 주소">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -25,10 +25,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-3 control-label">Password</label>
+                            <label for="password" class="col-md-3 control-label">비밀번호</label>
 
                             <div class="col-md-9">
-                                <input id="password" type="password" class="form-control" name="password"  placeholder="Password">
+                                <input id="password" type="password" class="form-control" name="password"  placeholder="비밀번호">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -39,10 +39,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-3 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-3 control-label">비밀번호 확인</label>
 
                             <div class="col-md-9">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirm Your Password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="비밀번호 확인">
                             </div>
                         </div>
 
@@ -71,7 +71,7 @@
                             <label for="name" class="col-md-3 control-label">이름</label>
 
                             <div class="col-md-9">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  placeholder="Your Name">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  placeholder="이름">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -97,38 +97,38 @@
 
 
 
-                        <div class="form-group{{ $errors->has('area_code') || $errors->has('exchange') || $errors->has('line_number') ? ' has-error' : '' }}">                            
-                            <label for="name" class="col-md-3 col-xs-12 control-label">전화번호</label>
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="phone" class="col-md-3 col-xs-12 control-label">전화번호</label>
 
-                            <div class="col-md-3 col-xs-4">
-                                <input id="area_code" type="text" class="form-control" name="area_code" value="{{ old('area_code') }}"  placeholder="Area Code">
+                            <div class="col-md-9 col-xs-12">
+                                <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}"  placeholder="전화번호 ex)201-388-9999, 2013889999">
 
-                                @if ($errors->has('area_code'))
+                                @if ($errors->has('phone'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('area_code') }}</strong>
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
                             </div>
 
-                            <div class="col-md-3 col-xs-4">
-                                <input id="exchange" type="text" class="form-control" name="exchange" value="{{ old('exchange') }}"  placeholder="Prefix">
+                            {{--<div class="col-md-3 col-xs-4">--}}
+                                {{--<input id="exchange" type="text" class="form-control" name="exchange" value="{{ old('exchange') }}"  placeholder="Prefix">--}}
 
-                                @if ($errors->has('exchange'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('exchange') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                                {{--@if ($errors->has('exchange'))--}}
+                                    {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('exchange') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
 
-                            <div class="col-md-3 col-xs-4">
-                                <input id="line_number" type="text" class="form-control" name="line_number" value="{{ old('line_number') }}"  placeholder="Number">
+                            {{--<div class="col-md-3 col-xs-4">--}}
+                                {{--<input id="line_number" type="text" class="form-control" name="line_number" value="{{ old('line_number') }}"  placeholder="Number">--}}
 
-                                @if ($errors->has('line_number'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('line_number') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                                {{--@if ($errors->has('line_number'))--}}
+                                    {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('line_number') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
                         </div>
 
 
@@ -136,7 +136,7 @@
                             <label for="name" class="col-md-3 col-xs-12 control-label">주소</label>
 
                             <div class="col-md-9 col-xs-12">
-                                <input id="line1" type="text" class="form-control" name="line1" value="{{ old('line1') }}"  placeholder="Street Address" style="margin-bottom:15px;">
+                                <input id="line1" type="text" class="form-control" name="line1" value="{{ old('line1') }}"  placeholder="주소" style="margin-bottom:15px;">
 
                                 @if ($errors->has('line1'))
                                     <span class="help-block">
@@ -147,7 +147,7 @@
 
                             <div class="col-md-3 col-xs-12"></div>
                             <div class="col-md-9 col-xs-12">
-                                <input id="line2" type="text" class="form-control" name="line2" value="{{ old('line2') }}"  placeholder="Apt # / Suite # etc" style="margin-bottom:15px;">
+                                <input id="line2" type="text" class="form-control" name="line2" value="{{ old('line2') }}"  placeholder="아파트 번호 및 Suite 번호" style="margin-bottom:15px;">
 
                                 @if ($errors->has('line2'))
                                     <span class="help-block">
@@ -159,7 +159,7 @@
 
                             <div class="col-md-3 col-xs-12"></div>
                             <div class="col-md-3 col-xs-4">
-                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}"  placeholder="City" style="margin-bottom:15px;">
+                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}"  placeholder="도시 이름" style="margin-bottom:15px;">
 
                                 @if ($errors->has('city'))
                                     <span class="help-block">
@@ -170,9 +170,10 @@
 
                             <div class="col-md-3 col-xs-4">
                                 <select name="state" id="state" class="form-control" style="margin-bottom:15px;">
-                                    @foreach(App\Helper\Address::states(App\Helper\Address::ASSOC) as $key=>$value)
-                                        <option value="{{ $key }}"{{ old('state')==$key?' selected':''}}>{{ $value }}</option>
-                                    @endforeach
+                                    {{--<option value="{{ $key }}"{{ old('state')==$key?' selected':''}}>{{ $value }}</option>--}}
+                                        @foreach(App\Helper\Address::states(App\Helper\Address::ASSOC) as $key=>$value)
+                                           <option value="{{ $key }}"{{ old('state')==$key?' selected':''}}{{ !old('state') && $key=='NJ'?' selected':'' }}>{{ $value }}</option>
+                                        @endforeach
                                 </select>
 
                                 @if ($errors->has('state'))
@@ -184,7 +185,7 @@
 
 
                             <div class="col-md-3 col-xs-4">
-                                <input id="zip" type="text" class="form-control" name="zip" value="{{ old('zip') }}"  placeholder="Zip" style="margin-bottom:15px;">
+                                <input id="zip" type="text" class="form-control" name="zip" value="{{ old('zip') }}"  placeholder="우편번호" style="margin-bottom:15px;">
 
                                 @if ($errors->has('zip'))
                                     <span class="help-block">
