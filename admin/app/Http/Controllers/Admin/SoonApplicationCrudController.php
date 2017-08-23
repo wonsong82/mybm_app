@@ -260,11 +260,11 @@ class SoonApplicationCrudController extends CrudController
 
 
         $data = [
-            '이메일' => $email,
             '이름' => $name,
+            '이메일' => $email,
+            '성별' => $gender,
             '생일' => $birthday,
             '나이' => $age,
-            '성별' => $gender,
             '전화번호' => $phone,
             '주소' => $address
         ];
