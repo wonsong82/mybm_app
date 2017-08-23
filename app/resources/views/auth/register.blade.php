@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-3 control-label">EMail 주소</label>
+                            <label for="email" class="col-md-3 control-label">Email 주소</label>
 
                             <div class="col-md-9">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  autofocus placeholder="Email 주소">
@@ -294,7 +294,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    신청하기
                                 </button>
                             </div>
                         </div>
