@@ -1,0 +1,1 @@
+<a href="{{ url($crud->route.'/'.$entry->getkey()) }}" class="btn btn-xs btn-default"><i class="fa fa-eye"></i> <span>View {{ $entry->childName?:'' }}</span></a>

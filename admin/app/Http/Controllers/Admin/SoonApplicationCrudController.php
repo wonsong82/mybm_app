@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\SoonApplication;
 use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\SoonApplicationRequest as StoreRequest;
 use App\Http\Requests\SoonApplicationRequest as UpdateRequest;
+use Carbon\Carbon;
 
 class SoonApplicationCrudController extends CrudController
 {
@@ -43,6 +45,11 @@ class SoonApplicationCrudController extends CrudController
             ],
             [
                 'name' => 'status'
+            ],
+            [
+                'name' => 'created_at',
+                'label' => 'Submitted on',
+                'type' => 'date'
             ]
         ]);
 
@@ -68,7 +75,8 @@ class SoonApplicationCrudController extends CrudController
                 'name' => 'term',
                 'type' => 'select_from_array',
                 'options' => [
-                    '2018' => '2017 - 2018'
+                    '2018' => '2017 - 2018',
+                    '2019' => '2018 - 2019'
                 ]
             ],
             [
@@ -112,6 +120,25 @@ class SoonApplicationCrudController extends CrudController
 
 
         ]);
+
+
+        //$this->crud->enableAjaxTable();
+        $this->crud->orderBy('created_at', 'desc');
+
+
+        $this->crud->addFilter([
+            'type' => 'dropdown',
+            'name' => 'term',
+            'label' => 'Term'
+        ], [
+            '2018' => '2017 - 2018',
+            '2019' => '2018 - 2019'
+        ], function($value){
+            $this->crud->addClause('where', 'term', $value);
+        });
+
+        $this->crud->enableDetailsRow();
+        $this->crud->allowAccess('details_row');
 
 
 
@@ -200,5 +227,48 @@ class SoonApplicationCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+
+    public function showDetailsRow($id)
+    {
+        $app = SoonApplication::with('user.profile.phone', 'user.profile.address')->find($id);
+
+        $email = $app->user->email;
+        $name = $app->user->profile->name;
+        $birthday = $app->user->profile->birthday ?
+            date('Y년 n월 j일', strtotime($app->user->profile->birthday))
+            : '정보없음';
+        $age = new Carbon($app->user->profile->birthday);
+        $age = $app->user->profile->birthday ?
+            $age->diffInYears() : '정보없음';
+        $gender = $app->user->profile->gender == 'male' ? '남' : '여';
+        $gender = $app->user->profile->gender ? $gender : '정보없음';
+        $phone = $app->user->profile->phone ?
+            sprintf('(%s) %s-%s',
+                $app->user->profile->phone->area_code,
+                $app->user->profile->phone->exchange,
+                $app->user->profile->phone->line_number
+            ) : '정보없음';
+        $address = $app->user->profile->address ?
+            sprintf('%s %s,<br>%s %s, %s',
+                $app->user->profile->address->line1,
+                $app->user->profile->address->line2,
+                $app->user->profile->address->city,
+                $app->user->profile->address->state,
+                $app->user->profile->address->zip
+            ) : '정보없음';
+
+
+        $data = [
+            '이메일' => $email,
+            '이름' => $name,
+            '생일' => $birthday,
+            '나이' => $age,
+            '성별' => $gender,
+            '전화번호' => $phone,
+            '주소' => $address
+        ];
+
+        return view('details.soon_application', compact('data'));
     }
 }

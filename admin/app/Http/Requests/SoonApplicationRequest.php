@@ -25,7 +25,7 @@ class SoonApplicationRequest extends \Backpack\CRUD\app\Http\Requests\CrudReques
     public function rules()
     {
         return [
-            'user_id' => 'required',
+            'user_id' => 'required|unique:soon_applications',
             'term' => 'required',
             'status' => 'required'
             // 'name' => 'required|min:5|max:255'

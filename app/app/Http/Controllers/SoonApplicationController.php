@@ -34,4 +34,5 @@ class SoonApplicationController extends Controller
         return view('soon-application.registered', $request->all());
     }
 
+
 }
