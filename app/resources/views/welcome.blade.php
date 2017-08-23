@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Bridge Makers</title>
+        <title>BridgeMakers</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    뉴저지 초대교회<br>Bridge Makers
+                    뉴저지 초대교회<br>BridgeMakers
                 </div>
 
                 <div class="links">
