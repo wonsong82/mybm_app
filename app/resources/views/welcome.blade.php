@@ -43,6 +43,7 @@
 
             .content {
                 text-align: center;
+                overflow: hidden;
             }
 
             .title {
@@ -62,6 +63,12 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            @media (max-width:768px){
+                .title {
+                    font-size: 30px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -69,10 +76,9 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">MY HOME</a>
                     @else
                         <a href="{{ route('login') }}">로그인</a>
-                        <a href="{{ route('register') }}">가입하기</a>
                     @endauth
                 </div>
             @endif

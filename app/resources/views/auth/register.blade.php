@@ -5,13 +5,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">순 신청서</div>
+                <div class="panel-heading">BM 등록</div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-3 control-label">EMail 주소</label>
+                            <label for="email" class="col-md-3 control-label">이메일 주소</label>
 
                             <div class="col-md-9">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  autofocus placeholder="Email 주소">
@@ -294,7 +294,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    BM 등록하기
                                 </button>
                             </div>
                         </div>

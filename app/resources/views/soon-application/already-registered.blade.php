@@ -18,7 +18,7 @@
                             <p>순신청서가 취소 되었습니다.</p>
                         @endif
 
-                        <a href="{{ url('home') }}" class="btn btn-primary">Back to Dashboard</a>
+                        <a href="{{ url('home') }}" class="btn btn-primary">홈으로 돌아가기</a>
                     </div>
                 </div>
 

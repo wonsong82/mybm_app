@@ -11,19 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+Route::get('/', 'HomeController@index')->middleware('guest');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group([
-    'middleware' => 'auth'
+    'middleware' => ['auth']
 ], function(){
-    Route::resource('/soon-application/{term}', 'SoonApplicationController');
+    Route::get('/home', 'HomeController@home');
+    Route::get('/soon-application/{term}/create', 'SoonApplicationController@create');
+    Route::post('/soon-application/{term}', 'SoonApplicationController@store');
 });
 
 

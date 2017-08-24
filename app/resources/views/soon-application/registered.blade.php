@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         <h4>순 신청서가 접수되었습니다.</h4>
 
-                        <a href="{{ url('home') }}" class="btn btn-primary">Back to Dashboard</a>
+                        <a href="{{ url('home') }}" class="btn btn-primary">홈으로 돌아가기</a>
                     </div>
                 </div>
 
