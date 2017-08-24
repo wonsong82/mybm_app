@@ -11,6 +11,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
                             <label for="email" class="col-md-4 control-label">이메일</label>
 
                             <div class="col-md-6">
@@ -42,7 +43,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>로그인 상태 유지
                                     </label>
                                 </div>
                             </div>
