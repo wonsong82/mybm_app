@@ -81,7 +81,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
+                        {{--<div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
                             <label for="birthday" class="col-md-3 control-label">생년월일</label>
 
                             <div class="col-md-9">
@@ -93,6 +93,54 @@
                                     </span>
                                 @endif
                             </div>
+                        </div>--}}
+
+                        <div class="form-group{{ $errors->has('dob_y') || $errors->has('dob_m') || $errors->has('dob_d') ? ' has-error' : ''}}">
+                            <label for="birthday" class="col-md-3 col-xs-12 control-label">생년원일</label>
+
+                            <div class="col-md-3 col-xs-4">
+                                <select name="dob_y" id="dob_y" class="form-control">
+                                    @php
+                                    $selected = old('dob_y') ? old('dob_y') : (int)date('Y')-25;
+                                    @endphp
+                                    @for($i=(int)date('Y')-60;$i<=(int)date('Y')-10;$i++)
+                                        <option value="{{ $i }}"{{ $selected==$i? ' selected':'' }}>{{ $i }} 년</option>
+                                    @endfor
+                                </select>
+                                @if ($errors->has('dob_y'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dob_y') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-3 col-xs-4">
+                                <select name="dob_m" id="dob_m" class="form-control">
+                                    @for($i=1;$i<=12;$i++)
+                                        <option value="{{ $i }}"{{ old('dob_m')==$i? ' selected':'' }}>{{ $i }} 월</option>
+                                    @endfor
+                                </select>
+                                @if ($errors->has('dob_m'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dob_m') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-3 col-xs-4">
+                                <select name="dob_d" id="dob_d" class="form-control">
+                                    @for($i=1;$i<=31;$i++)
+                                        <option value="{{ $i }}"{{ old('dob_d')==$i? ' selected':'' }}>{{ $i }} 일</option>
+                                    @endfor
+                                </select>
+                                @if ($errors->has('dob_d'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dob_d') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+
                         </div>
 
 
@@ -110,25 +158,25 @@
                                 @endif
                             </div>
 
-                            {{--<div class="col-md-3 col-xs-4">--}}
-                                {{--<input id="exchange" type="text" class="form-control" name="exchange" value="{{ old('exchange') }}"  placeholder="Prefix">--}}
+                            {{--<div class="col-md-3 col-xs-4">
+                                <input id="exchange" type="text" class="form-control" name="exchange" value="{{ old('exchange') }}"  placeholder="Prefix">
 
-                                {{--@if ($errors->has('exchange'))--}}
-                                    {{--<span class="help-block">--}}
-                                        {{--<strong>{{ $errors->first('exchange') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
+                                @if ($errors->has('exchange'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('exchange') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
 
-                            {{--<div class="col-md-3 col-xs-4">--}}
-                                {{--<input id="line_number" type="text" class="form-control" name="line_number" value="{{ old('line_number') }}"  placeholder="Number">--}}
+                            <div class="col-md-3 col-xs-4">
+                                <input id="line_number" type="text" class="form-control" name="line_number" value="{{ old('line_number') }}"  placeholder="Number">
 
-                                {{--@if ($errors->has('line_number'))--}}
-                                    {{--<span class="help-block">--}}
-                                        {{--<strong>{{ $errors->first('line_number') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
+                                @if ($errors->has('line_number'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('line_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>--}}
                         </div>
 
 
