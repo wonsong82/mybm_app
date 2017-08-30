@@ -66,7 +66,7 @@
                     <div class="progress">
                         <div class="progress-bar" style="width: {{ round(($notAppliedUsers->count() / $users->count())*100) }}%"></div>
                     </div>
-                    <span class="progress-description">{{ $notAppliedUsers->count() }} Users applied ({{ round(($notAppliedUsers->count() / $users->count())*100) }}% )</span>
+                    <span class="progress-description">{{ $notAppliedUsers->count() }} Users not applied ({{ round(($notAppliedUsers->count() / $users->count())*100) }}% )</span>
                 </div>
 
             </div>
