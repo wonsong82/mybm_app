@@ -99,7 +99,7 @@
                         @foreach( $notAppliedUsers as $user )
 
                             <tr>
-                                <td>{{ $user->profile->name }}</td>
+                                <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{!! $user->profileButton() !!}</td>
                             </tr>
