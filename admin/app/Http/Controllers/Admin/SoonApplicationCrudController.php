@@ -280,7 +280,7 @@ class SoonApplicationCrudController extends CrudController
 
     public function status($term)
     {
-        $users = User::with('profile')->get();
+        $users = User::with('profile')->orderBy('created_at', 'desc')->get();
 
         $applications = SoonApplication::with('user.profile')->term($term)->get();
 
