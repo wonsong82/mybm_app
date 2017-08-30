@@ -28,7 +28,7 @@
           <li><a href="{{ url($adm. '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
 
             <li class="header">SOON</li>
-            <li><a href="{{ url($adm. '/soon-application') }}"><i class="fa fa-files-o"></i> <span>순신청서</span></a></li>
+            <li><a href="{{ url($adm. '/soon-application?term=2018') }}"><i class="fa fa-files-o"></i> <span>순신청서</span></a></li>
           @endif
 
 

@@ -132,7 +132,7 @@ class SoonApplicationCrudController extends CrudController
             'label' => 'Term'
         ], [
             '2018' => '2017 - 2018',
-            '2019' => '2018 - 2019'
+            //'2019' => '2018 - 2019'
         ], function($value){
             $this->crud->addClause('where', 'term', $value);
         });
@@ -140,6 +140,9 @@ class SoonApplicationCrudController extends CrudController
         $this->crud->enableDetailsRow();
         $this->crud->allowAccess('details_row');
 
+        //if(request()->get('term')){
+            $this->crud->addButton('top', 'status', 'model_function', 'statusButton', 'end');
+        //}
 
 
         // ------ CRUD FIELDS
@@ -229,6 +232,8 @@ class SoonApplicationCrudController extends CrudController
         return $redirect_location;
     }
 
+
+
     public function showDetailsRow($id)
     {
         $app = SoonApplication::with('user.profile.phone', 'user.profile.address')->find($id);
@@ -269,6 +274,25 @@ class SoonApplicationCrudController extends CrudController
             '주소' => $address
         ];
 
-        return view('details.soon_application', compact('data'));
+        return view('soon-application.detail', compact('data'));
+    }
+
+
+    public function status($term)
+    {
+        $users = User::with('profile')->get();
+
+        $applications = SoonApplication::with('user.profile')->term($term)->get();
+
+        $appliedUsers = $applications->map(function($application){
+            return $application->user;
+        });
+
+        $notAppliedUsers = $users->diff($appliedUsers);
+
+        $crud = $this->crud;
+
+
+        return view('soon-application.status', compact('users', 'applications', 'appliedUsers', 'notAppliedUsers', 'term', 'crud'));
     }
 }

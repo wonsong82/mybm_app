@@ -23,4 +23,5 @@ CRUD::resource('addressbook', 'AddressbookCrudController');
 
 
 // Soon Application
+Route::get('soon-application/status/{term}', 'SoonApplicationCrudController@status');
 CRUD::resource('soon-application', 'SoonApplicationCrudController');

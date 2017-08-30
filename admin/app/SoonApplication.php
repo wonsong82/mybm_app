@@ -53,6 +53,11 @@ class SoonApplication extends Model
     | SCOPES
     |--------------------------------------------------------------------------
     */
+    public function scopeTerm($query, $term)
+    {
+        return $query->where('term', $term);
+    }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -65,4 +70,12 @@ class SoonApplication extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
+
+    public function statusButton()
+    {
+        return request()->get('term')?
+            '<a class="btn btn-primary ladda-button" href="'.url('soon-application/status/'.request()->get('term')).'"><span class="ladda-label"><i class="fa fa-bar-chart"></i> Status</span></a>':
+            '';
+    }
 }

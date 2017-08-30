@@ -67,4 +67,5 @@ class User extends Authenticatable
         return '<a href="'.$href.'" class="btn btn-xs btn-default"><i class="fa fa-eye"></i> <span>'.$text.'</span></a>';
     }
 
+
 }
