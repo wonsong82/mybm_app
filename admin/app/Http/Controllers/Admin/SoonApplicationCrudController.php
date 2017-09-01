@@ -140,9 +140,10 @@ class SoonApplicationCrudController extends CrudController
         $this->crud->enableDetailsRow();
         $this->crud->allowAccess('details_row');
 
-        //if(request()->get('term')){
-            $this->crud->addButton('top', 'status', 'model_function', 'statusButton', 'end');
-        //}
+
+        $this->crud->addButton('top', 'status', 'model_function', 'statusButton', 'end');
+        $this->crud->addButton('top', 'print', 'model_function', 'printButton', 'end');
+
 
 
         // ------ CRUD FIELDS
@@ -233,11 +234,8 @@ class SoonApplicationCrudController extends CrudController
     }
 
 
-
-    public function showDetailsRow($id)
+    public function parseProfile($app)
     {
-        $app = SoonApplication::with('user.profile.phone', 'user.profile.address')->find($id);
-
         $email = $app->user->email;
         $name = $app->user->profile->name;
         $birthday = $app->user->profile->birthday ?
@@ -263,6 +261,23 @@ class SoonApplicationCrudController extends CrudController
                 $app->user->profile->address->zip
             ) : '정보없음';
 
+        return [
+            'email' => $email,
+            'name' => $name,
+            'birthday' => $birthday,
+            'age' => $age,
+            'gender' => $gender,
+            'phone' => $phone,
+            'address' => $address
+        ];
+    }
+
+
+
+    public function showDetailsRow($id)
+    {
+        $app = SoonApplication::with('user.profile.phone', 'user.profile.address')->find($id);
+        extract($this->parseProfile($app));
 
         $data = [
             '이름' => $name,
@@ -294,5 +309,18 @@ class SoonApplicationCrudController extends CrudController
 
 
         return view('soon-application.status', compact('users', 'applications', 'appliedUsers', 'notAppliedUsers', 'term', 'crud'));
+    }
+
+    public function print($term)
+    {
+        $applications = SoonApplication::with('user.profile.phone', 'user.profile.address')->term($term)->get();
+
+        $applications = $applications->map(function($app){
+            $app->data = $this->parseProfile($app);
+            return $app;
+        });
+
+
+        return view('soon-application.print', compact('applications'));
     }
 }

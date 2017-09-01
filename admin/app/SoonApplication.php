@@ -78,4 +78,11 @@ class SoonApplication extends Model
             '<a class="btn btn-primary ladda-button" href="'.url('soon-application/status/'.request()->get('term')).'"><span class="ladda-label"><i class="fa fa-bar-chart"></i> Status</span></a>':
             '';
     }
+
+    public function printButton()
+    {
+        return request()->get('term')?
+            '<a class="btn btn-primary ladda-button" href="'.url('soon-application/print/'.request()->get('term')).'" target="_blank"><span class="ladda-label"><i class="fa fa-print"></i> Print</span></a>':
+            '';
+    }
 }
