@@ -55,6 +55,16 @@ class HomeController extends Controller
                     $antime = strtotime('2000-' . date('m', $atime) . '-' . date('d', $atime));
                     $bntime = strtotime('2000-' . date('m', $btime) . '-' . date('d', $btime));
                     return $antime > $bntime;
+                })->map(function($user) use ($thisWeek){
+                    $time = strtotime($user->profile->birthday);
+                    $m = date('m', $time);
+                    $d = date('d', $time);
+                    $date = array_filter($thisWeek, function($dt) use($m, $d){
+                        return $dt['m'] == $m && $dt['d'] == $d;
+                    });
+
+                    $user->birthdayThisYear = date('Y-m-d', array_values($date)[0]['time']);
+                    return $user;
                 }),
             ],
             [
@@ -67,6 +77,16 @@ class HomeController extends Controller
                     $antime = strtotime('2000-' . date('m', $atime) . '-' . date('d', $atime));
                     $bntime = strtotime('2000-' . date('m', $btime) . '-' . date('d', $btime));
                     return $antime > $bntime;
+                })->map(function($user) use ($nextWeek){
+                    $time = strtotime($user->profile->birthday);
+                    $m = date('m', $time);
+                    $d = date('d', $time);
+                    $date = array_filter($nextWeek, function($dt) use($m, $d){
+                        return $dt['m'] == $m && $dt['d'] == $d;
+                    });
+
+                    $user->birthdayThisYear = date('Y-m-d', array_values($date)[0]['time']);
+                    return $user;
                 }),
             ]
         ];
