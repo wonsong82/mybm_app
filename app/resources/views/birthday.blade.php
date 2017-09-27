@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     <ul>
                         @foreach($bd['users'] as $user)
-                        <li>{{ date('n월 j일 (D)', strtotime($user->birthdayThisYear)) }} {{ $user->profile->name }}</li>
+                        <li>{{ $user->profile->name }} ({{ date('n월 j일 D', strtotime($user->birthdayThisYear)) }})</li>
                         @endforeach
                     </ul>
                 </div>
