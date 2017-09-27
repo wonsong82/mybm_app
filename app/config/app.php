@@ -178,6 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        \Wonsong\DBHandler\DBHandlerServiceProvider::class,
+
     ],
 
     /*

@@ -26,4 +26,6 @@ Route::group([
 });
 
 
+Route::get('birthday', 'HomeController@birthday');
+
 
