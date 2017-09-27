@@ -1,0 +1,23 @@
+{
+  "name": "wonsong/dbhandler",
+  "description": "Backup and restore database by table",
+  "keywords": [],
+  "homepage": "",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Won Song",
+      "email": "me@wonsong.com"
+    }
+  ],
+  "require": {
+    "laravel/framework": "5.3.*|5.4.*"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Wonsong\\DBHandler\\": "src"
+    }
+  }
+}

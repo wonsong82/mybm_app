@@ -24,7 +24,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Wonsong\\": "vendor/wonsong/"
+            "Wonsong\\": "package/wonsong/"
         }
     },
     "autoload-dev": {
