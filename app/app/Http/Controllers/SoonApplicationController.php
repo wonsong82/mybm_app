@@ -29,7 +29,7 @@ class SoonApplicationController extends Controller
 
     public function store(SoonApplicationRequest $request)
     {
-        auth()->user()->soon_application()->create($request->all());
+        auth()->user()->soon_applications()->create($request->all());
 
         return view('soon-application.registered', $request->all());
     }

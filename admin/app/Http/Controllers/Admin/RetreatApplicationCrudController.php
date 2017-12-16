@@ -2,137 +2,219 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\SoonApplication;
+use App\RetreatApplication;
 use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\SoonApplicationStoreRequest as StoreRequest;
-use App\Http\Requests\SoonApplicationUpdateRequest as UpdateRequest;
+use App\Http\Requests\RetreatApplicationStoreRequest as StoreRequest;
+use App\Http\Requests\RetreatApplicationUpdateRequest as UpdateRequest;
 use Carbon\Carbon;
 
-class SoonApplicationCrudController extends CrudController
+class RetreatApplicationCrudController extends CrudController
 {
     public function setup()
     {
-        /*
-        |--------------------------------------------------------------------------
-        | BASIC CRUD INFORMATION
-        |--------------------------------------------------------------------------
-        */
-        $this->crud->setModel('App\SoonApplication');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/soon-application');
-        $this->crud->setEntityNameStrings('Soon Application', 'Soon Applications');
 
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->setModel(RetreatApplication::class);
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/retreat-application');
+        $this->crud->setEntityNameStrings('Retreat Application', 'Retreat Applications');
 
+        /*
+        |--------------------------------------------------------------------------
+        | BASIC CRUD INFORMATION
+        |--------------------------------------------------------------------------
+        */
 
         $this->crud->addColumns([
             [
                 'name' => 'user_id',
-                'label' => 'User',
+                'label' => '이름',
                 'type' => 'select',
                 'entity' => 'user',
                 'model' => User::class,
                 'attribute' => 'name'
             ],
             [
-                'name' => 'term',
+                'name' => 'term_name',
+                'label' => '텀'
             ],
             [
-                'name' => 'status'
-            ],
-            [
-                'name' => 'created_at',
-                'label' => 'Submitted on',
-                'type' => 'date'
-            ]
-        ]);
-
-        $this->crud->addFields([
-            [
-                'name' => 'term',
-                'type' => 'select_from_array',
+                'name' => 'is_paid',
+                'label' => '결제여부',
+                'type' => 'boolean'  ,
                 'options' => [
-                    '2018' => '2017 - 2018',
-                    '2019' => '2018 - 2019'
+                    0 => '미납',
+                    1 => '완납'
                 ]
             ],
             [
+                'name' => 'created_at',
+                'label' => '신청일',
+                'type' => 'date'
+            ]
+
+        ]);
+
+
+
+        $fields = [
+            [
+                'name' => 'uniform_size',
+                'label' => '유니폼 사이즈',
+                'type' => 'select2_from_array',
+                'options' => [
+                    'XS' => 'XS',
+                    'S' => 'S',
+                    'M' => 'M',
+                    'L' => 'L',
+                    'XL' => 'XL',
+                    'XXL' => 'XXL'
+                ],
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
+            ],
+            [
+                'name' => 'price',
+                'label' => '가격',
+                'type' => 'number',
+                'attributes' => ['step' => '1'],
+                'prefix' => '$',
+                'suffix' => '.00',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
+            ],
+            [
+                'name' => 's1',
+                'type' => 'custom_html',
+                'value' => '<hr/>'
+            ],
+            [
+                'name' => 'is_paid',
+                'label' => '결제여부',
+                'type' => 'radio',
+                'options' => [
+                    0 => '미납',
+                    1 => '완납'
+                ],
+                'inline' => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4'
+                ]
+            ],
+            [
+                'name' => 'payment_method',
+                'label' => '결제방법',
+                'type' => 'select_from_array',
+                'options' => [
+                    '' => '-',
+                    'Cash' => 'Cash',
+                    'Check' => 'Check'
+                ],
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4'
+                ]
+            ],
+            [
+                'name' => 'paid_at',
+                'label' => '결제날짜',
+                'type' => 'date',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4'
+                ]
+            ],
+            [
+                'name' => 's2',
+                'type' => 'custom_html',
+                'value' => '<hr/>'
+            ],
+            [
+                'name' => 'group',
+                'label' => '조',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
+            ],
+            [
+                'name' => 'room',
+                'label' => '방',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
+            ],
+            [
+                'name' => 's3',
+                'type' => 'custom_html',
+                'value' => '<hr/>'
+            ],
+            [
+                'name' => 'note',
+                'label' => '노트',
+                'type' => 'textarea',
+                'attributes' => ['rows' => 5]
+            ]
+        ];
+
+
+
+        $this->crud->addFields(array_merge([], [
+            [
+                'name' => 'term',
+                'label' => '텀',
+                'type' => 'select_from_array',
+                'options' => [
+                    '17_W' => '2017 겨울 수련회',
+                    '18_S' => '2018 여름 수련회'
+                ],
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4'
+                ]
+            ],
+            [
+                'name' => 's0',
+                'type' => 'custom_html',
+                'value' => '<hr/>'
+            ],
+            [
                 'name' => 'user_id',
-                'label' => 'User',
+                'label' => '이름',
                 'type' => 'select2',
                 'entity' => 'user',
                 'model' => User::class,
                 'attribute' => 'name'
             ],
+        ], $fields), 'create');
+
+        $this->crud->addFields(array_merge([], [
             [
-                'name' => 'status',
-                'type' => 'select_from_array',
-                'options' => [
-                    'pending' => 'Pending',
-                    'accepted' => 'Accepted',
-                    'canceled' => 'Canceled'
-                ]
+                'name' => 'users_name',
+                'label' => '이름',
+                'type' => 'text',
+                'attributes' => ['readonly' => 'readonly']
             ],
-            [
-                'name' => 'need_ride',
-                'label' => 'Need Ride',
-                'type' => 'checkbox',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4'
-                ]
-            ],
-            [
-                'name' => 'can_provide_ride',
-                'label' => 'Can Provide Ride',
-                'type' => 'checkbox',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4'
-                ]
-            ],
-            [
-                'name' => 'can_provide_place',
-                'label' => 'Can Provide Place',
-                'type' => 'checkbox',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4'
-                ]
-            ],
-            [
-                'name' => 'age_preference',
-                'label' => 'Age Preference',
-                'type' => 'select_from_array',
-                'options' => [
-                    'broad' => 'Broad range',
-                    'exact' => 'Close range',
-                    'both' => 'Can be both'
-                ],
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4'
-                ]
-            ]
+        ], $fields), 'update');
 
 
 
-        ]);
 
 
-        //$this->crud->enableAjaxTable();
+
         $this->crud->orderBy('created_at', 'desc');
-
 
         $this->crud->addFilter([
             'type' => 'dropdown',
             'name' => 'term',
             'label' => 'Term'
         ], [
-            '2018' => '2017 - 2018',
-            //'2019' => '2018 - 2019'
+            '17_W' => '2017 겨울 수련회',
+            '18_S' => '2108 여름 수련회'
         ], function($value){
             $this->crud->addClause('where', 'term', $value);
         });
@@ -141,8 +223,11 @@ class SoonApplicationCrudController extends CrudController
         $this->crud->allowAccess('details_row');
 
 
-        $this->crud->addButton('top', 'status', 'model_function', 'statusButton', 'end');
-        $this->crud->addButton('top', 'print', 'model_function', 'printButton', 'end');
+        //$this->crud->addButton('top', 'status', 'model_function', 'statusButton', 'end');
+        //$this->crud->addButton('top', 'print', 'model_function', 'printButton', 'end');
+
+
+
 
 
 
@@ -234,93 +319,34 @@ class SoonApplicationCrudController extends CrudController
     }
 
 
-    public function parseProfile($app)
-    {
-        $email = $app->user->email;
-        $name = $app->user->profile->name;
-        $birthday = $app->user->profile->birthday ?
-            date('Y년 n월 j일', strtotime($app->user->profile->birthday))
-            : '정보없음';
-        $age = new Carbon($app->user->profile->birthday);
-        $age = $app->user->profile->birthday ?
-            $age->diffInYears() : '정보없음';
-        $gender = $app->user->profile->gender == 'male' ? '남' : '여';
-        $gender = $app->user->profile->gender ? $gender : '정보없음';
-        $phone = $app->user->profile->phone ?
-            sprintf('(%s) %s-%s',
-                $app->user->profile->phone->area_code,
-                $app->user->profile->phone->exchange,
-                $app->user->profile->phone->line_number
-            ) : '정보없음';
-        $address = $app->user->profile->address ?
-            sprintf('%s %s,<br>%s %s, %s',
-                $app->user->profile->address->line1,
-                $app->user->profile->address->line2,
-                $app->user->profile->address->city,
-                $app->user->profile->address->state,
-                $app->user->profile->address->zip
-            ) : '정보없음';
-
-        return [
-            'email' => $email,
-            'name' => $name,
-            'birthday' => $birthday,
-            'age' => $age,
-            'gender' => $gender,
-            'phone' => $phone,
-            'address' => $address
-        ];
-    }
-
-
-
     public function showDetailsRow($id)
     {
-        $app = SoonApplication::with('user.profile.phone', 'user.profile.address')->find($id);
-        extract($this->parseProfile($app));
+        $app = RetreatApplication::with('user.profile.phone', 'user.profile.address')->find($id);
+        $profile = (object)$app->user->parseProfile();
 
         $data = [
-            '이름' => $name,
-            '이메일' => $email,
-            '성별' => $gender,
-            '생일' => $birthday,
-            '나이' => $age,
-            '전화번호' => $phone,
-            '주소' => $address
+            '이름' => $profile->name,
+            '신청일' => $app->created_at->format('Y-m-d'),
+            '이메일' => $profile->email,
+            '성별' => $profile->gender,
+            '생일' => $profile->birthday,
+            '나이' => $profile->age,
+            '전화번호' => $profile->phone,
+            '주소' => $profile->address,
+            '사이즈' => $app->uniform_size,
+            '가격' => $app->price,
+            '결제여부' => $app->is_paid? '완납' : '미납',
+            '결제날짜' => $app->paid_at? $app->paid_at->format('Y-m-d'): '-',
+            '조' => $app->group?: '-',
+            '방' => $app->room?: '-',
+            '노트' => $app->note?: '-'
         ];
 
-        return view('soon-application.detail', compact('data'));
+        return view('retreat-application.detail', compact('data'));
     }
 
 
-    public function status($term)
-    {
-        $users = User::with('profile')->orderBy('created_at', 'desc')->get();
-
-        $applications = SoonApplication::with('user.profile')->term($term)->get();
-
-        $appliedUsers = $applications->map(function($application){
-            return $application->user;
-        });
-
-        $notAppliedUsers = $users->diff($appliedUsers);
-
-        $crud = $this->crud;
 
 
-        return view('soon-application.status', compact('users', 'applications', 'appliedUsers', 'notAppliedUsers', 'term', 'crud'));
-    }
 
-    public function print($term)
-    {
-        $applications = SoonApplication::with('user.profile.phone', 'user.profile.address')->term($term)->get();
-
-        $applications = $applications->map(function($app){
-            $app->data = $this->parseProfile($app);
-            return $app;
-        });
-
-
-        return view('soon-application.print', compact('applications'));
-    }
 }

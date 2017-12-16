@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class SoonApplicationRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
+class RetreatApplicationUpdateRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,9 @@ class SoonApplicationRequest extends \Backpack\CRUD\app\Http\Requests\CrudReques
     public function rules()
     {
         return [
-            'user_id' => 'required|unique:soon_applications',
-            'term' => 'required',
-            'status' => 'required'
+            //'term' => 'required',
+            'uniform_size' => 'required',
+            'price' => 'required'
             // 'name' => 'required|min:5|max:255'
         ];
     }

@@ -21,8 +21,14 @@ Route::group([
     'middleware' => ['auth']
 ], function(){
     Route::get('/home', 'HomeController@home');
+
     Route::get('/soon-application/{term}/create', 'SoonApplicationController@create');
     Route::post('/soon-application/{term}', 'SoonApplicationController@store');
+
+
+    Route::get('/retreat-application/{term}/create', 'RetreatApplicationController@create');
+    Route::post('/retreat-application/{term}', 'RetreatApplicationController@store');
+
 });
 
 

@@ -39,9 +39,14 @@ class User extends Authenticatable
     }
 
 
-    public function soon_application()
+    public function soon_applications()
     {
-        return $this->hasOne(SoonApplication::class);
+        return $this->hasMany(SoonApplication::class);
+    }
+
+    public function retreat_applications()
+    {
+        return $this->hasMany(RetreatApplication::class);
     }
 
 

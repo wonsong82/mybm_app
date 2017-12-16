@@ -26,3 +26,9 @@ CRUD::resource('addressbook', 'AddressbookCrudController');
 Route::get('soon-application/status/{term}', 'SoonApplicationCrudController@status');
 Route::get('soon-application/print/{term}', 'SoonApplicationCrudController@print');
 CRUD::resource('soon-application', 'SoonApplicationCrudController');
+
+
+// Retreat Application
+CRUD::resource('retreat-application', 'RetreatApplicationCrudController')->with(function(){
+    //Route::get('')
+});

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class SoonApplication extends Model
+class RetreatApplication extends Model
 {
     use CrudTrait;
 
@@ -15,27 +15,38 @@ class SoonApplication extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'soon_applications';
+    //protected $table = 'retreat_applications';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = [
         'user_id',
         'term',
-        'status',
-        'need_ride',
-        'can_provide_ride',
-        'can_provide_place',
-        'age_preference'
+        'uniform_size',
+
+        'price',
+
+        'paid_amount',
+        'paid_status',
+        'is_paid',
+        'paid_at',
+        'payment_method',
+
+        'group',
+        'room',
+        'note'
     ];
     // protected $hidden = [];
-    // protected $dates = [];
+     protected $dates = [
+         'paid_at'
+     ];
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
 
     /*
     |--------------------------------------------------------------------------
@@ -64,25 +75,24 @@ class SoonApplication extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+    public function getUsersNameAttribute()
+    {
+        return $this->user->name;
+    }
+
+    public function getTermNameAttribute()
+    {
+        switch($this->term){
+            case '17_W':
+                return '2017 겨울 수련회';
+            case '18_S':
+                return '2018 여름 수련회';
+        }
+    }
 
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
-
-    public function statusButton()
-    {
-        return request()->get('term')?
-            '<a class="btn btn-primary ladda-button" href="'.url('soon-application/status/'.request()->get('term')).'"><span class="ladda-label"><i class="fa fa-bar-chart"></i> Status</span></a>':
-            '';
-    }
-
-    public function printButton()
-    {
-        return request()->get('term')?
-            '<a class="btn btn-primary ladda-button" href="'.url('soon-application/print/'.request()->get('term')).'" target="_blank"><span class="ladda-label"><i class="fa fa-print"></i> Print</span></a>':
-            '';
-    }
 }

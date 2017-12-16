@@ -19,16 +19,14 @@
         <ul class="sidebar-menu">
           <li class="header">GENERAL</li>
           <li><a href="{{ url($adm.'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
-
+          <li><a href="{{ url($adm. '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
 
 
           {{-- #### Content management #### --}}
           @if(auth()->user()->can('manage admin'))
-          <li class="header">CONTENT MANAGE</li>
-          <li><a href="{{ url($adm. '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
-
-            <li class="header">SOON</li>
-            <li><a href="{{ url($adm. '/soon-application?term=2018') }}"><i class="fa fa-files-o"></i> <span>순신청서</span></a></li>
+            <li class="header">CONTENT MANAGE</li>
+            <li><a href="{{ url($adm. '/soon-application?term=2018') }}"><i class="fa fa-files-o"></i> <span>순 신청서</span></a></li>
+            <li><a href="{{ url($adm. '/retreat-application?term=17_W') }}"><i class="fa fa-files-o"></i> <span>수련회 신청서</span></a></li>
           @endif
 
 

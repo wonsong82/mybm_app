@@ -89,7 +89,9 @@
                 </div>
 
                 <div class="links">
+                    <a href="{{ url('retreat-application/17_W/create') }}">2017 겨울 수련회 신청하기</a>
                     <a href="{{ url('soon-application/2018/create') }}">2017 - 2018 순 신청하기</a>
+
                 </div>
             </div>
         </div>
