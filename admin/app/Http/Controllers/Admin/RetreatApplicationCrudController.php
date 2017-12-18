@@ -41,8 +41,16 @@ class RetreatApplicationCrudController extends CrudController
                 'attribute' => 'name'
             ],
             [
-                'name' => 'term_name',
-                'label' => '텀'
+                'name' => 'uniform_size',
+                'label' => '사이즈'
+            ],
+            [
+                'name' => 'group',
+                'label' => '조'
+            ],
+            [
+                'name' => 'room',
+                'label' => '방'
             ],
             [
                 'name' => 'is_paid',
@@ -57,7 +65,15 @@ class RetreatApplicationCrudController extends CrudController
                 'name' => 'created_at',
                 'label' => '신청일',
                 'type' => 'date'
-            ]
+            ],
+            [
+                'name' => 'term_name',
+                'label' => '텀'
+            ],
+            [
+                'name' => 'note_excerpt',
+                'label' => '노트'
+            ],
 
         ]);
 

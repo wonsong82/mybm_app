@@ -95,4 +95,10 @@ class RetreatApplication extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function getNoteExcerptAttribute()
+    {
+        return $this->note ? (
+            strlen($this->note) > 10 ? substr(0, 10, $this->note) . '...' : $this->note
+        ): '';
+    }
 }
