@@ -98,7 +98,7 @@ class RetreatApplication extends Model
     public function getNoteExcerptAttribute()
     {
         return $this->note ? (
-            strlen($this->note) > 10 ? substr($this->note,0, 10) . '...' : $this->note
+            strlen($this->note) > 50 ? substr($this->note,0, 50) . '...' : $this->note
         ): '';
     }
 }
